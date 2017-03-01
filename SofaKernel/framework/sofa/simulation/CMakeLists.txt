@@ -54,6 +54,7 @@ set(HEADER_FILES
     VectorOperations.h
     VelocityThresholdVisitor.h
     Visitor.h
+    VisitorPool.h
     VisitorExecuteFunc.h
     VisitorScheduler.h
     VisualVisitor.h
@@ -111,6 +112,7 @@ set(SOURCE_FILES
     VectorOperations.cpp
     VelocityThresholdVisitor.cpp
     Visitor.cpp
+    VisitorPool.cpp
     VisitorScheduler.cpp
     VisualVisitor.cpp
     WriteStateVisitor.cpp

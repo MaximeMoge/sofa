@@ -56,6 +56,11 @@ public:
 
     ~PropagateEventVisitor();
 
+    virtual void setParams(const core::ExecParams* params, sofa::core::objectmodel::Event* e){
+    	this->params = params;
+    	this->m_event = e;
+    }
+
     Visitor::Result processNodeTopDown(simulation::Node* node);
     void processObject(simulation::Node*, core::objectmodel::BaseObject* obj);
 

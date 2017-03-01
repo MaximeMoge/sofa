@@ -19,18 +19,8 @@
 *                                                                             *
 * Contact information: contact@sofa-framework.org                             *
 ******************************************************************************/
-#ifndef SOFA_SIMULATION_BEHAVIORUPDATEPOSITIONACTION_H
-#define SOFA_SIMULATION_BEHAVIORUPDATEPOSITIONACTION_H
+#include <sofa/simulation/VisitorPool.h>
 
-
-#if !defined(__GNUC__) || (__GNUC__ > 3 || (_GNUC__ == 3 && __GNUC_MINOR__ > 3))
-#pragma once
-#endif
-
-#include <sofa/core/ExecParams.h>
-#include <sofa/simulation/Visitor.h>
-#include <sofa/simulation/Node.h>
-#include <sofa/core/BehaviorModel.h>
 
 namespace sofa
 {
@@ -38,38 +28,8 @@ namespace sofa
 namespace simulation
 {
 
-/** Update the position of a new simulation step
-
- */
-class SOFA_SIMULATION_CORE_API BehaviorUpdatePositionVisitor : public Visitor
-{
-
-public:
-    BehaviorUpdatePositionVisitor(const core::ExecParams* params, SReal _dt): Visitor(params),dt(_dt) {}
-    void processBehaviorModel(simulation::Node* node, core::BehaviorModel* b);
-    virtual Result processNodeTopDown(simulation::Node* node);
-
-    /// Specify whether this action can be parallelized.
-    virtual bool isThreadSafe() const { return true; }
-
-    /// Return a category name for this action.
-    /// Only used for debugging / profiling purposes
-    virtual const char* getCategoryName() const { return "behavior update position"; }
-    virtual const char* getClassName() const { return "BehaviorUpdatePositionVisitor"; }
-
-    void setDt(SReal _dt) {dt = _dt;}
-    SReal getDt() {return dt;}
-
-    virtual void setParams(const core::ExecParams* params, SReal _dt){
-    	this->params = params;
-    	this->dt = _dt;
-    }
-protected:
-    SReal dt;
-};
 
 } // namespace simulation
 
 } // namespace sofa
 
-#endif

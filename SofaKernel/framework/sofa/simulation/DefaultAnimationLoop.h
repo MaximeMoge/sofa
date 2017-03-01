@@ -28,6 +28,7 @@
 #include <sofa/simulation/simulationcore.h>
 #include <sofa/simulation/Node.h>
 #include <sofa/helper/AdvancedTimer.h>
+#include <sofa/simulation/VisitorPool.h>
 
 namespace sofa
 {
@@ -77,6 +78,9 @@ public:
 protected :
 
     simulation::Node* gnode;  ///< the node controlled by the loop
+
+    // pool of visitor to avoid creation/destruction of all visitors at each step
+    simulation::VisitorPool visitorPool;
 
 };
 

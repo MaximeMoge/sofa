@@ -69,6 +69,11 @@ public:
     /// Only used for debugging / profiling purposes
     virtual const char* getCategoryName() const { return "animate"; }
     virtual const char* getClassName() const { return "AnimateVisitor"; }
+
+    virtual void setParams(const core::ExecParams* params, SReal _dt){
+    	this->params = params;
+    	this->dt = _dt;
+    }
 };
 
 } // namespace simulation

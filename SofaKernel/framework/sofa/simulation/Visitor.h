@@ -64,6 +64,8 @@ public:
     Visitor(const core::ExecParams* params);
     virtual ~Visitor();
 
+    virtual void setParams(const core::ExecParams* params){ this->params = params;}
+
     const core::ExecParams* execParams() const { return params; }
 
     enum Result { RESULT_CONTINUE, RESULT_PRUNE };

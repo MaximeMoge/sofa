@@ -91,22 +91,40 @@ void DefaultAnimationLoop::step(const core::ExecParams* params, SReal dt)
 
     {
         AnimateBeginEvent ev ( dt );
-        PropagateEventVisitor act ( params, &ev );
-        gnode->execute ( act );
+        if ( !visitorPool.isPresent("PropagateEventVisitor") ) {
+        	PropagateEventVisitor act ( params, &ev );
+        	visitorPool.addVisitor( "PropagateEventVisitor",act );
+        }
+        else {
+        	visitorPool.getVisitor("PropagateEventVisitor").setParams(params, &ev);
+        }
+        gnode->execute ( visitorPool.getVisitor("PropagateEventVisitor") );
     }
 
     SReal startTime = gnode->getTime();
 
 
     sofa::helper::AdvancedTimer::stepBegin("BehaviorUpdatePositionVisitor");
-    BehaviorUpdatePositionVisitor beh(params , dt);
-    gnode->execute ( beh );
+    if ( !visitorPool.isPresent("BehaviorUpdatePositionVisitor") ) {
+    	BehaviorUpdatePositionVisitor beh ( params, dt );
+    	visitorPool.addVisitor( "BehaviorUpdatePositionVisitor",beh );
+    }
+    else {
+    	visitorPool.getVisitor("BehaviorUpdatePositionVisitor").setParams(params, dt);
+    }
+    gnode->execute ( visitorPool.getVisitor("BehaviorUpdatePositionVisitor") );
     sofa::helper::AdvancedTimer::stepEnd("BehaviorUpdatePositionVisitor");
 
 
     sofa::helper::AdvancedTimer::stepBegin("AnimateVisitor");
-    AnimateVisitor act(params, dt);
-    gnode->execute ( act );
+    if ( !visitorPool.isPresent("AnimateVisitor") ) {
+    	AnimateVisitor act ( params, dt );
+    	visitorPool.addVisitor( "AnimateVisitor",act );
+    }
+    else {
+    	visitorPool.getVisitor("AnimateVisitor").setParams(params, dt);
+    }
+    gnode->execute ( visitorPool.getVisitor("AnimateVisitor") );
     sofa::helper::AdvancedTimer::stepEnd("AnimateVisitor");
 
 
