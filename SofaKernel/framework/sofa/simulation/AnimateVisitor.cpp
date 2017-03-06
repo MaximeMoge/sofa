@@ -136,6 +136,15 @@ Visitor::Result AnimateVisitor::processNodeTopDown(simulation::Node* node)
         mparams.setDt(dt);
         MechanicalResetConstraintVisitor resetConstraint(&mparams);
         node->execute(&resetConstraint);
+
+//        if ( !visitorPool->isPresentMRC("MechanicalResetConstraintVisitor") ) {
+//            MechanicalResetConstraintVisitor* mrc = new MechanicalResetConstraintVisitor( &mparams);
+//            visitorPool->addMRCVisitor( "MechanicalResetConstraintVisitor",mrc );
+//        }
+//        else {
+//            visitorPool->getMRCVisitor("MechanicalResetConstraintVisitor")->setParams(&mparams);
+//        }
+//        gnode->execute ( visitorPool->getMRCVisitor("MechanicalResetConstraintVisitor") );
     }
 
     if (dt == 0) setDt(node->getDt());

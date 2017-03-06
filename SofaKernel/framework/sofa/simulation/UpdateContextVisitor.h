@@ -66,6 +66,9 @@ public:
         : UpdateContextVisitor(params)
     {
     }
+    virtual void setParams(const core::ExecParams* params){
+        this->params = params;
+    }
 
     virtual Result processNodeTopDown(simulation::Node* node);
     virtual const char* getClassName() const { return "UpdateSimulationContextVisitor"; }

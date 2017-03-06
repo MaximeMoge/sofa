@@ -80,7 +80,7 @@ protected :
     simulation::Node* gnode;  ///< the node controlled by the loop
 
     // pool of visitor to avoid creation/destruction of all visitors at each step
-    simulation::VisitorPool visitorPool;
+    sofa::simulation::VisitorPool* visitorPool;
 
 };
 

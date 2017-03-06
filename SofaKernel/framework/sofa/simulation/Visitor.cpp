@@ -36,6 +36,7 @@ Visitor::Visitor(const core::ExecParams* p)
     , params(p)
 {
     //params = core::MechanicalParams::defaultInstance();
+    std::cout << "SALUT from Visitor ctor" << std::endl;
 #ifdef SOFA_DUMP_VISITOR_INFO
     enteringBase=NULL; infoPrinted=false;
 #endif

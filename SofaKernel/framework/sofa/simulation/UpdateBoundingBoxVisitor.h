@@ -39,6 +39,10 @@ public:
 
     void processNodeBottomUp(simulation::Node* node);
 
+    virtual void setParams(const core::ExecParams* params){
+        this->params = params;
+    }
+
 };
 
 

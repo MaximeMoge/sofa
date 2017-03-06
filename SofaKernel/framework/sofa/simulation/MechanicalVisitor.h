@@ -1775,6 +1775,9 @@ public:
         setReadWriteVectors();
 #endif
     }
+    virtual void setParams(const sofa::core::ExecParams* params){
+        this->params = params;
+    }
 
     virtual Result fwdMechanicalState(simulation::Node* /*node*/, core::behavior::BaseMechanicalState* mm);
     virtual Result fwdMappedMechanicalState(simulation::Node* /*node*/, core::behavior::BaseMechanicalState* mm);

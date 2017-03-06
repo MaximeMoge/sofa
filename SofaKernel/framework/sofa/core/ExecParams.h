@@ -28,6 +28,11 @@
 namespace sofa
 {
 
+//namespace simulation
+//{
+//class VisitorPool;
+//}
+
 namespace core
 {
 
@@ -85,8 +90,16 @@ private:
     {
     }
 
+//    // pool of visitor to avoid creation/destruction of all visitors at each step
+//    sofa::simulation::VisitorPool* visitorPool;
+
 
 public:
+//    sofa::simulation::VisitorPool* getVisitorPool()
+//    {
+//        return this->visitorPool;
+//    }
+
     bool checkValidStorage() const;
 
     /// Mode of execution requested
