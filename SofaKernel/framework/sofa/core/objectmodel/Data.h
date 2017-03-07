@@ -32,6 +32,7 @@
 #include <sofa/helper/vector.h>
 #include <memory>
 #include <string>
+#include <boost/lockfree/queue.hpp>
 
 namespace sofa
 {
@@ -544,6 +545,11 @@ protected:
 
 public:
     mutable void* shared;
+
+    //FIFO for R/W accesses
+    //pair.first = taskId
+    //pair.second = 0 for Write access, 1 for Read access
+    boost::lockfree:queue<pair<unsigned int, unsigned int>> accessQueue;
 
 private:
     Data(const Data& );

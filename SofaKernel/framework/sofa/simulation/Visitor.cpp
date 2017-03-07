@@ -34,9 +34,11 @@ namespace simulation
 Visitor::Visitor(const core::ExecParams* p)
     : canAccessSleepingNode(true)
     , params(p)
+    , taskID(sofa::core::objectmodel::Base::nbTasks)
 {
+    sofa::core::objectmodel::Base::nbTasks++;
     //params = core::MechanicalParams::defaultInstance();
-    std::cout << "SALUT from Visitor ctor" << std::endl;
+//    std::cout << "SALUT from Visitor ctor" << std::endl;
 #ifdef SOFA_DUMP_VISITOR_INFO
     enteringBase=NULL; infoPrinted=false;
 #endif

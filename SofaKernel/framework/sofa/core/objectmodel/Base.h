@@ -455,6 +455,9 @@ protected:
     MapLink m_aliasLink;
 
 public:
+    //total number of tasks
+    static unsigned int nbTasks;
+
     /// Name of the object.
     Data<std::string> name;
 

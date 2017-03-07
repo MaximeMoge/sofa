@@ -37,6 +37,8 @@ namespace core
 namespace objectmodel
 {
 
+unsigned int Base::nbTasks = 0;
+
 using std::string;
 static const std::string unnamed_label=std::string("unnamed");
 

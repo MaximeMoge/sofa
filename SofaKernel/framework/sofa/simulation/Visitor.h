@@ -209,6 +209,7 @@ public:
 
 protected:
     const core::ExecParams* params;
+    const unsigned int taskID;
 
 
 #ifdef SOFA_DUMP_VISITOR_INFO
