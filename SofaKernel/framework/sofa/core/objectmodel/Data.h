@@ -43,6 +43,13 @@ namespace core
 namespace objectmodel
 {
 
+struct RWAccess
+{
+    unsigned int taskID;
+    unsigned int isRead;
+};
+
+
 /** \brief Abstract base class template for Data. */
 template < class T >
 class TData : public BaseData
@@ -549,7 +556,7 @@ public:
     //FIFO for R/W accesses
     //pair.first = taskId
     //pair.second = 0 for Write access, 1 for Read access
-    boost::lockfree:queue<pair<unsigned int, unsigned int>> accessQueue;
+    boost::lockfree::queue<RWAccess> accessQueue;
 
 private:
     Data(const Data& );
@@ -625,10 +632,15 @@ public:
 //protected:
 //    const data_container_type* data;
 public:
-    ReadAccessor(const data_container_type& d) : Inherit(d.getValue())/*, data(&d)*/ {}
-    ReadAccessor(const data_container_type* d) : Inherit(d->getValue())/*, data(d)*/ {}
-    ReadAccessor(const core::ExecParams* params, const data_container_type& d) : Inherit(d.getValue(params))/*, data(&d)*/ {}
-    ReadAccessor(const core::ExecParams* params, const data_container_type* d) : Inherit(d->getValue(params))/*, data(d)*/ {}
+    ReadAccessor(const data_container_type& d) : Inherit(d.getValue())/*, data(&d)*/ {
+    	std::cout << "ReadAccessor ctor from adress " << d << std::endl;
+    }
+    ReadAccessor(const data_container_type* d) : Inherit(d->getValue())/*, data(d)*/ {
+    	std::cout << "ReadAccessor ctor from adress " << d << std::endl;}
+    ReadAccessor(const core::ExecParams* params, const data_container_type& d) : Inherit(d.getValue(params))/*, data(&d)*/ {
+    	std::cout << "ReadAccessor ctor from adress " << d << std::endl;}
+    ReadAccessor(const core::ExecParams* params, const data_container_type* d) : Inherit(d->getValue(params))/*, data(d)*/ {
+    	std::cout << "ReadAccessor ctor from adress " << d << std::endl;}
 };
 
 /// Read/Write Accessor.

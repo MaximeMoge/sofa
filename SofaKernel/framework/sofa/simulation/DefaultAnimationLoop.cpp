@@ -92,137 +92,137 @@ void DefaultAnimationLoop::step(const core::ExecParams* params, SReal dt)
 #endif
 
     {
-//        AnimateBeginEvent ev ( dt );
-//        PropagateEventVisitor act ( params, &ev );
-//        gnode->execute ( act );
-
         AnimateBeginEvent ev ( dt );
-//        visitorPool->createNewVisitor<PropagateEventVisitor>("PropagateEventVisitor", params, &ev);
-//        gnode->execute ( visitorPool->getVisitor("PropagateEventVisitor" ) );
-        if ( !visitorPool->isPresentPE("PropagateEventVisitor") ) {
-            PropagateEventVisitor* act =new PropagateEventVisitor( params, &ev );
-            visitorPool->addPEVisitor( "PropagateEventVisitor",act );
-        }
-        else {
-            visitorPool->getPEVisitor("PropagateEventVisitor")->setParams(params, &ev);
-        }
-        gnode->execute ( visitorPool->getPEVisitor("PropagateEventVisitor") );
+        PropagateEventVisitor act ( params, &ev );
+        gnode->execute ( act );
+
+//        AnimateBeginEvent ev ( dt );
+////        visitorPool->createNewVisitor<PropagateEventVisitor>("PropagateEventVisitor", params, &ev);
+////        gnode->execute ( visitorPool->getVisitor("PropagateEventVisitor" ) );
+//        if ( !visitorPool->isPresentPE("PropagateEventVisitor") ) {
+//            PropagateEventVisitor* act =new PropagateEventVisitor( params, &ev );
+//            visitorPool->addPEVisitor( "PropagateEventVisitor",act );
+//        }
+//        else {
+//            visitorPool->getPEVisitor("PropagateEventVisitor")->setParams(params, &ev);
+//        }
+//        gnode->execute ( visitorPool->getPEVisitor("PropagateEventVisitor") );
     }
 
     SReal startTime = gnode->getTime();
 
 
-//    sofa::helper::AdvancedTimer::stepBegin("BehaviorUpdatePositionVisitor");
-//    BehaviorUpdatePositionVisitor beh(params , dt);
-//    gnode->execute ( beh );
-//    sofa::helper::AdvancedTimer::stepEnd("BehaviorUpdatePositionVisitor");
-
     sofa::helper::AdvancedTimer::stepBegin("BehaviorUpdatePositionVisitor");
-//    BehaviorUpdatePositionVisitor* beh = visitorPool->createNewVisitor<BehaviorUpdatePositionVisitor>("BehaviorUpdatePositionVisitor", params, dt);
-//    gnode->execute ( beh );
-    if ( !visitorPool->isPresentBUP("BehaviorUpdatePositionVisitor") ) {
-        BehaviorUpdatePositionVisitor* beh = new BehaviorUpdatePositionVisitor( params, dt );
-        visitorPool->addBUPVisitor( "BehaviorUpdatePositionVisitor",beh );
-    }
-    else {
-        visitorPool->getBUPVisitor("BehaviorUpdatePositionVisitor")->setParams(params, dt);
-    }
-    gnode->execute ( visitorPool->getBUPVisitor("BehaviorUpdatePositionVisitor") );
+    BehaviorUpdatePositionVisitor beh(params , dt);
+    gnode->execute ( beh );
     sofa::helper::AdvancedTimer::stepEnd("BehaviorUpdatePositionVisitor");
 
+//    sofa::helper::AdvancedTimer::stepBegin("BehaviorUpdatePositionVisitor");
+////    BehaviorUpdatePositionVisitor* beh = visitorPool->createNewVisitor<BehaviorUpdatePositionVisitor>("BehaviorUpdatePositionVisitor", params, dt);
+////    gnode->execute ( beh );
+//    if ( !visitorPool->isPresentBUP("BehaviorUpdatePositionVisitor") ) {
+//        BehaviorUpdatePositionVisitor* beh = new BehaviorUpdatePositionVisitor( params, dt );
+//        visitorPool->addBUPVisitor( "BehaviorUpdatePositionVisitor",beh );
+//    }
+//    else {
+//        visitorPool->getBUPVisitor("BehaviorUpdatePositionVisitor")->setParams(params, dt);
+//    }
+//    gnode->execute ( visitorPool->getBUPVisitor("BehaviorUpdatePositionVisitor") );
+//    sofa::helper::AdvancedTimer::stepEnd("BehaviorUpdatePositionVisitor");
 
-//    sofa::helper::AdvancedTimer::stepBegin("AnimateVisitor");
-//    AnimateVisitor act(params, dt);
-//    gnode->execute ( act );
-//    sofa::helper::AdvancedTimer::stepEnd("AnimateVisitor");
 
     sofa::helper::AdvancedTimer::stepBegin("AnimateVisitor");
-    if ( !visitorPool->isPresentA("AnimateVisitor") ) {
-        AnimateVisitor* act = new AnimateVisitor( params, dt );
-        visitorPool->addAVisitor( "AnimateVisitor",act );
-    }
-    else {
-        visitorPool->getAVisitor("AnimateVisitor")->setParams(params, dt);
-    }
-    gnode->execute ( visitorPool->getAVisitor("AnimateVisitor") );
+    AnimateVisitor act(params, dt);
+    gnode->execute ( act );
     sofa::helper::AdvancedTimer::stepEnd("AnimateVisitor");
 
+//    sofa::helper::AdvancedTimer::stepBegin("AnimateVisitor");
+//    if ( !visitorPool->isPresentA("AnimateVisitor") ) {
+//        AnimateVisitor* act = new AnimateVisitor( params, dt );
+//        visitorPool->addAVisitor( "AnimateVisitor",act );
+//    }
+//    else {
+//        visitorPool->getAVisitor("AnimateVisitor")->setParams(params, dt);
+//    }
+//    gnode->execute ( visitorPool->getAVisitor("AnimateVisitor") );
+//    sofa::helper::AdvancedTimer::stepEnd("AnimateVisitor");
 
-//    sofa::helper::AdvancedTimer::stepBegin("UpdateSimulationContextVisitor");
-//    gnode->setTime ( startTime + dt );
-//    gnode->execute< UpdateSimulationContextVisitor >(params);
-//    sofa::helper::AdvancedTimer::stepEnd("UpdateSimulationContextVisitor");
 
     sofa::helper::AdvancedTimer::stepBegin("UpdateSimulationContextVisitor");
     gnode->setTime ( startTime + dt );
-    if ( !visitorPool->isPresentUSC("UpdateSimulationContextVisitor") ) {
-        UpdateSimulationContextVisitor* asc = new UpdateSimulationContextVisitor( params);
-        visitorPool->addUSCVisitor( "UpdateSimulationContextVisitor",asc );
-    }
-    else {
-        visitorPool->getUSCVisitor("UpdateSimulationContextVisitor")->setParams(params);
-    }
-    gnode->execute ( visitorPool->getUSCVisitor("UpdateSimulationContextVisitor") );
+    gnode->execute< UpdateSimulationContextVisitor >(params);
     sofa::helper::AdvancedTimer::stepEnd("UpdateSimulationContextVisitor");
 
-    {
-//        AnimateEndEvent ev ( dt );
-//        PropagateEventVisitor act ( params, &ev );
-//        gnode->execute ( act );
+//    sofa::helper::AdvancedTimer::stepBegin("UpdateSimulationContextVisitor");
+//    gnode->setTime ( startTime + dt );
+//    if ( !visitorPool->isPresentUSC("UpdateSimulationContextVisitor") ) {
+//        UpdateSimulationContextVisitor* asc = new UpdateSimulationContextVisitor( params);
+//        visitorPool->addUSCVisitor( "UpdateSimulationContextVisitor",asc );
+//    }
+//    else {
+//        visitorPool->getUSCVisitor("UpdateSimulationContextVisitor")->setParams(params);
+//    }
+//    gnode->execute ( visitorPool->getUSCVisitor("UpdateSimulationContextVisitor") );
+//    sofa::helper::AdvancedTimer::stepEnd("UpdateSimulationContextVisitor");
 
+    {
         AnimateEndEvent ev ( dt );
-        if ( !visitorPool->isPresentPE("PropagateEventVisitor") ) {
-            PropagateEventVisitor* act =new PropagateEventVisitor( params, &ev );
-            visitorPool->addPEVisitor( "PropagateEventVisitor",act );
-        }
-        else {
-            visitorPool->getPEVisitor("PropagateEventVisitor")->setParams(params, &ev);
-        }
-        gnode->execute ( visitorPool->getPEVisitor("PropagateEventVisitor") );
+        PropagateEventVisitor act ( params, &ev );
+        gnode->execute ( act );
+
+//        AnimateEndEvent ev ( dt );
+//        if ( !visitorPool->isPresentPE("PropagateEventVisitor") ) {
+//            PropagateEventVisitor* act =new PropagateEventVisitor( params, &ev );
+//            visitorPool->addPEVisitor( "PropagateEventVisitor",act );
+//        }
+//        else {
+//            visitorPool->getPEVisitor("PropagateEventVisitor")->setParams(params, &ev);
+//        }
+//        gnode->execute ( visitorPool->getPEVisitor("PropagateEventVisitor") );
     }
 
     sofa::helper::AdvancedTimer::stepBegin("UpdateMapping");
     //Visual Information update: Ray Pick add a MechanicalMapping used as VisualMapping
-//    gnode->execute< UpdateMappingVisitor >(params);
+    gnode->execute< UpdateMappingVisitor >(params);
 
-    if ( !visitorPool->isPresentUM("UpdateMappingVisitor") ) {
-        UpdateMappingVisitor* asc = new UpdateMappingVisitor( params);
-        visitorPool->addUMVisitor( "UpdateMappingVisitor",asc );
-    }
-    else {
-        visitorPool->getUMVisitor("UpdateMappingVisitor")->setParams(params);
-    }
-    gnode->execute ( visitorPool->getUMVisitor("UpdateMappingVisitor") );
+//    if ( !visitorPool->isPresentUM("UpdateMappingVisitor") ) {
+//        UpdateMappingVisitor* asc = new UpdateMappingVisitor( params);
+//        visitorPool->addUMVisitor( "UpdateMappingVisitor",asc );
+//    }
+//    else {
+//        visitorPool->getUMVisitor("UpdateMappingVisitor")->setParams(params);
+//    }
+//    gnode->execute ( visitorPool->getUMVisitor("UpdateMappingVisitor") );
 
     {
-//        UpdateMappingEndEvent ev ( dt );
-//        PropagateEventVisitor act ( params , &ev );
-//        gnode->execute ( act );
-
         UpdateMappingEndEvent ev ( dt );
-        if ( !visitorPool->isPresentPE("PropagateEventVisitor") ) {
-            PropagateEventVisitor* act =new PropagateEventVisitor( params, &ev );
-            visitorPool->addPEVisitor( "PropagateEventVisitor",act );
-        }
-        else {
-            visitorPool->getPEVisitor("PropagateEventVisitor")->setParams(params, &ev);
-        }
-        gnode->execute ( visitorPool->getPEVisitor("PropagateEventVisitor") );
+        PropagateEventVisitor act ( params , &ev );
+        gnode->execute ( act );
+
+//        UpdateMappingEndEvent ev ( dt );
+//        if ( !visitorPool->isPresentPE("PropagateEventVisitor") ) {
+//            PropagateEventVisitor* act =new PropagateEventVisitor( params, &ev );
+//            visitorPool->addPEVisitor( "PropagateEventVisitor",act );
+//        }
+//        else {
+//            visitorPool->getPEVisitor("PropagateEventVisitor")->setParams(params, &ev);
+//        }
+//        gnode->execute ( visitorPool->getPEVisitor("PropagateEventVisitor") );
     }
     sofa::helper::AdvancedTimer::stepEnd("UpdateMapping");
 
 #ifndef SOFA_NO_UPDATE_BBOX
     sofa::helper::AdvancedTimer::stepBegin("UpdateBBox");
-//    gnode->execute< UpdateBoundingBoxVisitor >(params);
+    gnode->execute< UpdateBoundingBoxVisitor >(params);
 
-    if ( !visitorPool->isPresentUBB("UpdateBoundingBoxVisitor") ) {
-        UpdateBoundingBoxVisitor* asc = new UpdateBoundingBoxVisitor( params);
-        visitorPool->addUBBVisitor( "UpdateBoundingBoxVisitor",asc );
-    }
-    else {
-        visitorPool->getUBBVisitor("UpdateBoundingBoxVisitor")->setParams(params);
-    }
-    gnode->execute ( visitorPool->getUBBVisitor("UpdateBoundingBoxVisitor") );
+//    if ( !visitorPool->isPresentUBB("UpdateBoundingBoxVisitor") ) {
+//        UpdateBoundingBoxVisitor* asc = new UpdateBoundingBoxVisitor( params);
+//        visitorPool->addUBBVisitor( "UpdateBoundingBoxVisitor",asc );
+//    }
+//    else {
+//        visitorPool->getUBBVisitor("UpdateBoundingBoxVisitor")->setParams(params);
+//    }
+//    gnode->execute ( visitorPool->getUBBVisitor("UpdateBoundingBoxVisitor") );
     sofa::helper::AdvancedTimer::stepEnd("UpdateBBox");
 #endif
 #ifdef SOFA_DUMP_VISITOR_INFO
